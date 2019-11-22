@@ -20,7 +20,8 @@ ENV _GIT_SINCE= \
     _GIT_PATHSPEC= \
     _MENU_THEME=default
 
-COPY Dockerfile LICENSE README.md /frx/
+COPY Dockerfile LICENSE README.md start /frx/
 
 WORKDIR /git
-ENTRYPOINT [ "/usr/bin/git", "quick-stats" ]
+ENTRYPOINT [ "/frx/start" ]
+CMD [ "/usr/bin/git", "quick-stats" ]

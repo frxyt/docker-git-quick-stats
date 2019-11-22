@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Copyright (c) 2019 FEROX YT EIRL, www.ferox.yt <devops@ferox.yt>
+# Copyright (c) 2019 Jérémy WALTHER <jeremy.walther@golflima.net>
+# See <https://github.com/frxyt/docker-git-quick-stats> for details.
+
+set -e
+
+[[ "${1::1}" == '-' ]] && set -- /usr/bin/git quick-stats "$@"
+
+exec "$@"

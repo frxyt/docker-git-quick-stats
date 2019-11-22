@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+  stats:
+    image: frxyt/git-quick-stats
+    build:
+      context: .
+    volumes: 
+      - ./:/git:ro
