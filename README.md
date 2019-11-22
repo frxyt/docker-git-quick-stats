@@ -20,6 +20,24 @@ This image packages [`git-quick-stats`](https://github.com/arzzen/git-quick-stat
 * Run it in a git enabled repository: 
   * Unix: `docker run --rm -it -v $(pwd):$(pwd):ro frxyt/git-quick-stats`
   * Windows: `docker run --rm -it -v %cd%:/git:ro frxyt/git-quick-stats`
+* Run it on Gitlab CI by adding to your `.gitlab-ci.yml` file:
+  ```yaml
+  build:stats:
+    image: frxyt/git-quick-stats
+    stage: build
+    script:
+      - export _GIT_MONTH=$(git show -s --format=%ci -1 | cut -d'-' -f1-2)
+      - export _GIT_SINCE=${_GIT_MONTH}-01
+      - export _GIT_UNTIL=${_GIT_MONTH}-$(cal 01 ${_GIT_MONTH##*-} ${_GIT_MONTH%%-*} | sed 's/ /\n/g' | grep "\d" | tail -1)
+      - echo "Computing git stats from '${_GIT_SINCE}' to '${_GIT_UNTIL}':"
+      - git quick-stats -T
+      - git quick-stats -r
+      - unset _GIT_MONTH _GIT_SINCE _GIT_UNTIL
+      - echo "Computing git stats since the first commit:"
+      - git quick-stats -T
+      - git quick-stats -r
+    allow_failure: true
+  ```
 
 ## Build
 
