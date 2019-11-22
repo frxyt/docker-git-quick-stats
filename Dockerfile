@@ -18,7 +18,8 @@ ENV _GIT_SINCE= \
     _GIT_UNTIL= \
     _GIT_LIMIT= \
     _GIT_PATHSPEC= \
-    _MENU_THEME=default
+    _MENU_THEME=default \
+    TERM=xterm-256color
 
 COPY Dockerfile LICENSE README.md start /frx/
 
