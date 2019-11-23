@@ -4,7 +4,7 @@
 
 FROM alpine
 
-LABEL key="value"
+LABEL maintainer="Jérémy WALTHER <jeremy@ferox.yt>"
 
 RUN     apk add --no-cache bash git make ncurses util-linux\
     &&  git clone https://github.com/arzzen/git-quick-stats.git \
